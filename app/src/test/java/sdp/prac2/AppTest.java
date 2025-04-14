@@ -7,4 +7,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
+    @Test
+    public void testTask3(){
+        //arrange
+        String testBasic = "()";
+        String testWrong = "(";
+        String testNested = "((()))";
+
+        //act and assert as it returns boolean
+        assertTrue(Task3(testBasic));
+        assertFalse(Task3(testWrong));
+        assertTrue(Task3(testNested));
+    }
 }
