@@ -3,6 +3,15 @@ package sdp.prac2;
 import java.util.*;
 
 public class SimpleFunctions {
+    public static int Task1(List<Integer> a, List<Integer> b) {
+        int sum = 0;
+        for (int index : b) {
+            if (index >= 0 && index < a.size()) {
+                sum += a.get(index);
+            }
+        }
+        return sum;
+    }
     public static List<String> Task2(List<String> InputList){
         String CurrElement;
 
