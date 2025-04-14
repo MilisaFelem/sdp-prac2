@@ -18,6 +18,24 @@ public class SimpleFunctions {
         }
         return InputList;
     }
+
+    public static List<Integer> Task4(List<Integer> a, List<Integer> b) {
+        if (a.size() != b.size()) {
+            return null;
+        }
+
+        List<Integer> result = new ArrayList<>();
+        int num = a.size();
+
+        for (int i = 0; i < num; i++) {
+            int product = a.get(i) * b.get(num - 1 - i);
+            result.add(product);
+        }
+
+        return result;
+
+    }
+
 }
 
     
