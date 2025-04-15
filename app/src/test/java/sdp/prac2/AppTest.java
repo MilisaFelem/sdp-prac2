@@ -98,4 +98,46 @@ class AppTest {
         assertFalse(result, "Expected false for an unsorted list");
     }
 
+    @Test
+    public void Task6Test() {
+        // Arrange
+        List<Integer> emptyList = new Arrays.asList();
+        List<Integer> a3 = Arrays.asList(1, 2, 3);
+        List<Integer> a1 = Arrays.asList(7);
+
+        List<Integer> negative = Arrays.asList(-1);
+        List<Integer> b1 = Arrays.asList(0);
+        List<Integer> b2 = Arrays.asList(0,1);
+        List<Integer> bOutOfBounds1 = Arrays.asList(2_000_000);
+        List<Integer> bOutOfBounds2 = Arrays.asList(2_000_000,2_000_001);
+        List<Integer> bMix = Arrays.asList(0, 2_000_001);
+        
+        // Act
+        ArrayList<Integer> result1 = SimpleFunctions.Task6(emptyList, emptyList);    
+        ArrayList<Integer> result2 = SimpleFunctions.Task6(emptyList, b1);    
+        ArrayList<Integer> result3 = SimpleFunctions.Task6(emptyList, b2);    
+        ArrayList<Integer> result4 = SimpleFunctions.Task6(a1, emptyList);    
+        ArrayList<Integer> result5 = SimpleFunctions.Task6(a3, emptyList);    
+        ArrayList<Integer> result6 = SimpleFunctions.Task6(a1, negative); 
+        ArrayList<Integer> result7 = SimpleFunctions.Task6(a3, negative);
+        ArrayList<Integer> result7 = SimpleFunctions.Task6(a3, bOutOfBounds1);
+        ArrayList<Integer> result8 = SimpleFunctions.Task6(a3, bOutOfBounds2);
+        ArrayList<Integer> result9 = SimpleFunctions.Task6(a3, bMix);
+        
+        // Assert
+        assertEquals("Should be an empty list", result1, emptyList );
+        assertEquals("Should be an empty list", result2, emptyList );
+        assertEquals("Should be an empty list", result3, emptyList );
+        assertEquals("Should be an empty list", result4, emptyList );
+        assertEquals("Should be an empty list", result5, emptyList );
+        assertEquals("Should be an empty list", result6, emptyList );
+        assertEquals("Should be an empty list", result7, emptyList );
+        assertEquals("Should be an empty list", result8, emptyList );
+        assertEquals("Should be an empty list", result9, Arrays.asList(1) );
+
+        
+        
+        
+    }
+
 }
