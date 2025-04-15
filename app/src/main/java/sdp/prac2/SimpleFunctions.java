@@ -76,6 +76,18 @@ public class SimpleFunctions {
     return true;
 }
 
+    public static int roundToHoundred(int number) {
+        return (int) Math.ceil(number / 100.0) * 100;
+    }
+
+    public static ArrayList<Integer> Task6(ArrayList<Integer> numbers) {
+        ArrayList<Integer> roundedNumbers = new ArrayList<>();
+        for (int number : numbers) {
+            roundedNumbers.add(roundToHoundred(number));
+        }
+        return roundedNumbers;
+    }
+
 }
 
     
