@@ -40,4 +40,37 @@ class AppTest {
         assertFalse(Task3(testWrong));
         assertTrue(Task3(testNested));
     }
+
+    @Test
+    public void task4Test() {
+         // Arrange
+
+         //normal case
+         List<Integer> a = Arrays.asList(1, 2, 3);
+         List<Integer> b = Arrays.asList(4, 5, 6);
+         //Diff sizes case
+         List<Integer> c = Arrays.asList(1, 2);
+         List<Integer> d = Arrays.asList(3, 4, 5);
+         //empty list case
+         List<Integer> e = new ArrayList<>();
+         List<Integer> f = new ArrayList<>();
+         //one element case
+         List<Integer> g = Arrays.asList(7);
+         List<Integer> h = Arrays.asList(8);
+ 
+ 
+         // Act
+         List<Integer> result = SimpleFunctions.Task4(a, b);
+         List<Integer> result2 = SimpleFunctions.Task4(c, d);
+         List<Integer> result3 = SimpleFunctions.Task4(e, f);
+         List<Integer> result4 = SimpleFunctions.Task4(g, h);
+ 
+         // Assert
+         List<Integer> expected = Arrays.asList(1*6, 2*5, 3*4); // [6, 10, 12]
+         assertEquals(expected, result);
+         assertNull(result2);
+         assertEquals(new ArrayList<Integer>(), result3);
+         assertEquals(Arrays.asList(56), result4);
+
+    }
 }

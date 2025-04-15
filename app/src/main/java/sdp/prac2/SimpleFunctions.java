@@ -28,6 +28,28 @@ public class SimpleFunctions {
         return InputList;
     }
 
+    public static boolean Task3(String input) {
+        int count = 0;
+    
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+    
+            if (ch == '(') {
+                count++;
+            } else if (ch == ')') {
+                count--;
+                if (count < 0) {
+                    // More closing brackets than opening
+                    return false;
+                }
+            }
+        }
+        
+        // If count is 0, all brackets matched properly
+        return count == 0;
+    }
+
+
     public static List<Integer> Task4(List<Integer> a, List<Integer> b) {
         if (a.size() != b.size()) {
             return null;
