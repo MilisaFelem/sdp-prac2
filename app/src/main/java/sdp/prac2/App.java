@@ -3,9 +3,79 @@
  */
 package sdp.prac2;
 import sdp.prac2.SimpleFunctions;
+import com.google.gson.JsonObject;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        SimpleFunctions funcs = new SimpleFunctions();
+        Scanner scanner = new Scanner(System.in);
+        List<String> validFields = Arrays.asList("name", "postalZip", "region", "country", "address", "list");
+        Set<String> selectedFields = new HashSet<>();
+
+        System.out.println("Enter the fields you want to extract (comma separated): ");
+        String[] inputFields = scanner.nextLine().split(",");
+
+        for (String field : inputFields) {
+            String trimmed = field.trim();
+            if (validFields.contains(trimmed)) {
+                selectedFields.add(trimmed);
+            } else {
+                System.out.println("Invalid field ignored: " + trimmed);
+            }
+        }
+
+        if (selectedFields.isEmpty()) {
+            System.out.println("No valid fields selected. Exiting.");
+            return;
+        }
+
+        try {
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
+            File file = new File("data.xml");
+
+            saxParser.parse(file, new DefaultHandler() {
+                JsonObject currentRecord = null;
+                String currentElement = null;
+                StringBuilder content = new StringBuilder();
+
+                @Override
+                public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+                    if (qName.equals("record")) {
+                        currentRecord = new JsonObject();
+                    }
+                    currentElement = qName;
+                    content.setLength(0); // clear content buffer
+                }
+
+                @Override
+                public void characters(char[] ch, int start, int length) throws SAXException {
+                    content.append(ch, start, length);
+                }
+
+                @Override
+                public void endElement(String uri, String localName, String qName) throws SAXException {
+                    if (currentRecord != null && selectedFields.contains(qName)) {
+                        currentRecord.addProperty(qName, content.toString().trim());
+                    }
+
+                    if (qName.equals("record")) {
+                        System.out.println(currentRecord.toString());
+                    }
+
+                    currentElement = null;
+                }
+            });
+
+        } catch (Exception e) {
+            System.out.println("Error parsing XML: " + e.getMessage());
+        }
     }
 }
