@@ -144,5 +144,24 @@ class AppTest {
         // Assert
         assertFalse(result, "Expected false for an unsorted list");
     }
+    @Test
+    public void Task6Test1() {
+        List<Integer> input = Arrays.asList(90, 150, 300, 101);
+        List<Integer> expected = Arrays.asList(100, 200, 300, 200);
+
+        List<Integer> result = SimpleFunctions.Task6(input);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    public void Task6Test2() {
+        List<Integer> input = Arrays.asList(100, 200, 0, 500);
+        List<Integer> expected = Arrays.asList(100, 200, 0, 500);
+
+        List<Integer> result = SimpleFunctions.Task6(input);
+
+        assertEquals(expected, result);
+    }
 
 }
