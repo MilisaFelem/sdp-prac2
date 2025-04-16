@@ -12,16 +12,17 @@ public class SimpleFunctions {
         }
         return sum;
     }
-    public static List<String> Task2(List<String> InputList){
+
+    public static List<String> Task2(List<String> InputList) {
         String CurrElement;
 
-        for (int i = 0;i<InputList.size();i++){
+        for (int i = 0; i < InputList.size(); i++) {
             CurrElement = InputList.get(i);
             CurrElement = CurrElement.substring(1);
 
-            if (CurrElement == ""){
+            if (CurrElement == "") {
                 InputList.remove(i);
-            } else{
+            } else {
                 InputList.set(i, CurrElement);
             }
         }
@@ -30,10 +31,10 @@ public class SimpleFunctions {
 
     public static boolean Task3(String input) {
         int count = 0;
-    
+
         for (int i = 0; i < input.length(); i++) {
             char ch = input.charAt(i);
-    
+
             if (ch == '(') {
                 count++;
             } else if (ch == ')') {
@@ -44,11 +45,10 @@ public class SimpleFunctions {
                 }
             }
         }
-        
+
         // If count is 0, all brackets matched properly
         return count == 0;
     }
-
 
     public static List<Integer> Task4(List<Integer> a, List<Integer> b) {
         if (a.size() != b.size()) {
@@ -68,20 +68,20 @@ public class SimpleFunctions {
     }
 
     public static boolean Task5(List<Integer> lst) {
-    for (int i = 0; i < lst.size() - 1; i++) {
-        if (lst.get(i) > lst.get(i + 1)) {
-            return false;
+        for (int i = 0; i < lst.size() - 1; i++) {
+            if (lst.get(i) > lst.get(i + 1)) {
+                return false;
+            }
         }
+        return true;
     }
-    return true;
-}
 
     public static int roundToHoundred(int number) {
         return (int) Math.ceil(number / 100.0) * 100;
     }
 
-    public static ArrayList<Integer> Task6(ArrayList<Integer> numbers) {
-        ArrayList<Integer> roundedNumbers = new ArrayList<>();
+    public static List<Integer> Task6(List<Integer> numbers) {
+        List<Integer> roundedNumbers = new ArrayList<>();
         for (int number : numbers) {
             roundedNumbers.add(roundToHoundred(number));
         }
@@ -89,5 +89,3 @@ public class SimpleFunctions {
     }
 
 }
-
-    
